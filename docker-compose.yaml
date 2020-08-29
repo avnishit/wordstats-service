@@ -1,0 +1,33 @@
+version: "3"
+services:
+  wordstats-service:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./specs:/usr/src/app/specs
+      - ./tsconfig.json:/usr/src/app/tsconfig.json
+      - ./build:/usr/src/app/build
+    links:
+      - mongo
+      - redis
+    depends_on:
+      - mongo
+      - redis
+    env_file:
+      - ./.env
+    restart: always
+  redis:
+    image: redis:5.0.7
+    ports:
+      - "6379:6379"
+  mongo:
+    image: mongo:4.2.1
+    container_name: mongo
+    hostname: mongo
+    restart: always
+    ports:
+      - "27017:27017"
