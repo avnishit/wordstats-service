@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request as request , Response as response } from 'express';
-import { queueTask } from '../../app/queueTask';
+import { addTask } from '../../app/addTask';
 
 class wordCounterRoute {
     public path = '/count'
@@ -15,7 +15,7 @@ class wordCounterRoute {
             input,
             type
         } = req.body;
-        const { status } = await queueTask.execute(input, type);
+        const status = await addTask.execute(input, Number(type) || 0 );
         res.json({}).status(200);
     }
 }

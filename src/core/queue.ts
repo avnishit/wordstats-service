@@ -1,4 +1,4 @@
-export default class Queue<T> {
+export default class queue<T> {
     _store: T[] = [];
     push(val: T): void {
         this._store.push(val);

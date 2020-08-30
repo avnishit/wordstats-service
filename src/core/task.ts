@@ -1,23 +1,17 @@
 export class task {
     public static create({
         input,
-        type,
-        state,
-        retires,
-        description
+        type = task.inputType.text
     }: {
         input: string,
-        type: task.inputType,
-        state: task.state,
-        retires: number,
-        description: string
+        type?: task.inputType,
     }): task {
         return new task(
             input,
-        type,
-        state,
-        retires,
-        description
+            type,
+            task.state.queqed,
+            0,
+            ''
         );
     }
 
@@ -25,7 +19,7 @@ export class task {
         public readonly input: string,
         public readonly type: task.inputType,
         public readonly state: task.state,
-        public readonly  retires: number,
+        public readonly retires: number,
         public readonly description: string
     ) {
     }

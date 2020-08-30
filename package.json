@@ -33,16 +33,20 @@
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
     "ts-node": "^8.3.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.7",
     "@types/mongoose": "^5.7.36",
     "@types/pino": "^6.3.0",
+    "@types/voca": "^1.4.0",
+    "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.2",
-    "pino": "^6.5.1"
+    "pino": "^6.5.1",
+    "voca": "^1.4.0"
   }
 }
