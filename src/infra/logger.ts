@@ -1,2 +1,6 @@
 import pino from 'pino';
-export default pino();
+import configuration from '../configuration';
+
+const logger: pino.Logger = pino({level: configuration.logLevel});
+
+export default logger;

@@ -1,17 +1,18 @@
 # wordStats Service
 
->
+> Reads a textinput / local file on server / remove file & stores the word count.
 
 ### Scripts
 
-#### `npm run start:dev`
-
+#### `docker-compose up --build`
 Starts the application in development using `nodemon` and `ts-node` to do hot reloading.
 
-#### `npm run build`
+### Endpoints
 
-Builds the app at `build`, cleaning the folder first.
+#### `POST /counter { input: string, type: enum (0 - input text, 1 - file on server, 2 - remote file) }`
+Queues the input for future processing after validating the input.
 
-#### `npm run start`
+#### `GET /statistics?input=<word>`
+Returns count for number of occurances of word
 
-Starts the app in production by first building the project with `npm run build`, and then executing the compiled JavaScript at `build/index.js`.
+### Assumptions / Limitations

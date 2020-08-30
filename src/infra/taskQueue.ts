@@ -1,9 +1,10 @@
 import logger from '../infra/logger';
 import queue from '../core/queue';
-import { task } from '../core/task';
+import { task } from '../core/models/task';
+import utils from '../core/utils';
 import { processTask } from '../app/processTask';
 
-const QUEUE_DELAY = 5000;
+const QUEUE_DELAY = 10000;
 
 class taskQueue {
     private static instance: taskQueue = new taskQueue();
@@ -24,21 +25,19 @@ class taskQueue {
     }
 
     public async run(): Promise<any> {
-        setTimeout(async () => {
-            const nextTask = this.tasks.peek();
-            if (nextTask) {
-                logger.info({ task: nextTask }, 'Processing Next Task');
-
-                const [success, err] = await processTask.execute(nextTask as task);
-                this.tasks.pop();
-                if (!success) {
-                    logger.error({err}, 'Task Queue Processing Error');
-                }
-            } else {
-                logger.info('Task Queue Empty');
+        await utils.delay(QUEUE_DELAY);
+        const nextTask = this.tasks.peek();
+        if (nextTask) {
+            logger.info({ task: nextTask }, 'Processing Next Task');
+            const [success, err] = await processTask.execute(nextTask as task);
+            this.tasks.pop();
+            if (!success) {
+                logger.error({ err }, 'Task Queue Processing Error');
             }
-            this.run();
-        }, QUEUE_DELAY);
+        } else {
+            logger.info('Task Queue Empty');
+        }
+        await this.run();
         return null;
     }
 

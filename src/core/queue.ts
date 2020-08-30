@@ -1,16 +1,16 @@
 export default class queue<T> {
-    _store: T[] = [];
+    store: T[] = [];
     push(val: T): void {
-        this._store.push(val);
+        this.store.push(val);
     }
 
     pop(): T | undefined {
-        return this._store.shift();
+        return this.store.shift();
     }
 
     peek(): T | undefined {
-        if (this._store.length) {
-            return this._store[0];
+        if (this.store.length) {
+            return this.store[0];
         }
     }
 }

@@ -1,13 +1,14 @@
 import express from 'express';
 import { Request as request , Response as response } from 'express';
 import { addTask } from '../../app/addTask';
+import logger from '../../infra/logger';
 
 class wordCounterRoute {
-    public path = '/count'
-    public router = express.Router()
+    public path = '/counter';
+    public router = express.Router();
 
     constructor() {
-        this.router.get('/count', this.index)
+        this.router.get(this.path, this.index);
     }
 
     index = async (req: request, res: response) => {
@@ -15,8 +16,9 @@ class wordCounterRoute {
             input,
             type
         } = req.body;
-        const status = await addTask.execute(input, Number(type) || 0 );
-        res.json({}).status(200);
+        const result = await addTask.execute(input, Number(type));
+        logger.info({result}, 'Add Task');
+        res.status(result).json();
     }
 }
 

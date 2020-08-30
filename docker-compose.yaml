@@ -20,8 +20,6 @@ services:
     depends_on:
       - mongo
       - redis
-    env_file:
-      - ./.env
     restart: always
   redis:
     image: redis:5.0.7

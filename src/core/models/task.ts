@@ -19,6 +19,8 @@ export class task {
         public readonly input: string,
         public readonly type: task.inputType,
         public readonly state: task.state,
+
+        // For future purpose
         public readonly retires: number,
         public readonly description: string
     ) {
@@ -28,7 +30,7 @@ export class task {
 export namespace task {
     export enum inputType {
         text,
-        localFileUrl,
+        localFilePath,
         remoteFileUrl
     }
     

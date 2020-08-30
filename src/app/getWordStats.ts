@@ -1,16 +1,21 @@
 import logger from '../infra/logger';
-import wordStore from '../infra/wordStore';
+import wordStore from '../infra/mongoWordStore';
+
+import { appResult } from '../core/appResult';
+
 const DEFAULT_COUNT = 0;
+
 export class getWordStats {
     public static async execute(
         word: string,
-    ): Promise<number|null> {
+    ): Promise<[appResult, number?]> {
         try {
-            const result = await wordStore.findOne({ word });
+            logger.info(' Fetching word stats');
+            const result = await wordStore.findOne({ word : word.toLowerCase() });
             logger.info({result}, 'getWordStats Result');
-            return result?.count || DEFAULT_COUNT;
+            return [appResult.success, result?.count || DEFAULT_COUNT];
         } catch (err) {
-            return null;
+            return [appResult.serverError];
         }     
     }
 }

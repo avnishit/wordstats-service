@@ -1,24 +1,20 @@
 import express from 'express';
 import { Request as request , Response as response } from 'express';
 import { getWordStats } from '../../app/getWordStats';
-
-import logger from '../../infra/logger';
+import { appResult } from '../../core/appResult';
 
 class wordCounterRoute {
-    public path = '/stats'
-    public router = express.Router()
+    public path = '/statistics';
+    public router = express.Router();
 
     constructor() {
-        this.initRoutes()
-    }
-
-    public initRoutes() {
-        this.router.get('/stats', this.index)
+        this.router.get(this.path, this.index);
     }
 
     index = async (req: request, res: response) => {
-        const count: number | null = await getWordStats.execute(req.query.input as string);
-        res.json({ count });
+        const [result, count] = await getWordStats.execute(req.query.input as string);
+        if (result === appResult.success ) res.json({ count });
+        else res.status(result).json();
     }
 }
 
