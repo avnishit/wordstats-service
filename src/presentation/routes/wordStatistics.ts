@@ -12,6 +12,9 @@ class wordCounterRoute {
     }
 
     index = async (req: request, res: response) => {
+        if (!(req.query?.input && typeof req.query?.input === 'string')) {
+            res.status(appResult.badInput).json();
+        }
         const [result, count] = await getWordStats.execute(req.query.input as string);
         if (result === appResult.success ) res.json({ count });
         else res.status(result).json();

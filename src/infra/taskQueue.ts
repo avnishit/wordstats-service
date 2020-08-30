@@ -3,8 +3,7 @@ import queue from '../core/queue';
 import { task } from '../core/models/task';
 import utils from '../core/utils';
 import { processTask } from '../app/processTask';
-
-const QUEUE_DELAY = 10000;
+import configuration from '../configuration';
 
 class taskQueue {
     private static instance: taskQueue = new taskQueue();
@@ -25,7 +24,7 @@ class taskQueue {
     }
 
     public async run(): Promise<any> {
-        await utils.delay(QUEUE_DELAY);
+        await utils.delay(configuration.queueDelay);
         const nextTask = this.tasks.peek();
         if (nextTask) {
             logger.info({ task: nextTask }, 'Processing Next Task');

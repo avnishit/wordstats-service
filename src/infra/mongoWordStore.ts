@@ -1,7 +1,6 @@
 import mongoose, { ClientSession } from 'mongoose';
 import logger from './logger';
-
-const MAX_PARALLEL_COMMANDS = 25;
+import configuration from '../configuration';
 
 interface wordStoreInterface extends mongoose.Document {
   word: string;
@@ -34,13 +33,13 @@ wordStoreSchema.statics.bulkUpdate = async function (words: Map<string, number>,
 
     const operationsLen = promises.length;
     let indexStart = 0;
-    let indexEnd = indexStart + MAX_PARALLEL_COMMANDS;
+    let indexEnd = indexStart + configuration.maxParallelDbUpdates;
     while (indexStart < operationsLen) {
       if (indexEnd > operationsLen) indexEnd = operationsLen;
       await Promise.all(promises.slice(indexStart, indexEnd));
-      logger.info('Upserted docs:' + (indexEnd-indexStart+1).toString());
+      logger.trace('Upserted docs:' + (indexEnd-indexStart+1).toString());
       indexStart = indexEnd;
-      indexEnd = indexStart + MAX_PARALLEL_COMMANDS;
+      indexEnd = indexStart + configuration.maxParallelDbUpdates;
     }
 
     if (withTransaction) {

@@ -1,5 +1,5 @@
 import wordCounterRoute from './wordCounter';
-import wordStatsRoute from './wordStats';
+import wordStatsRoute from './wordStatistics';
 
 export {
   wordCounterRoute,
