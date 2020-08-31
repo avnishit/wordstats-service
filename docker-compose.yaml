@@ -12,7 +12,6 @@ services:
       - ./src:/usr/src/app/src
       - ./specs:/usr/src/app/specs
       - ./tsconfig.json:/usr/src/app/tsconfig.json
-      - ./build:/usr/src/app/build
       - ./assets:/usr/src/app/assets
     links:
       - mongo

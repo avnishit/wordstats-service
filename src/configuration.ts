@@ -1,5 +1,6 @@
 
 export default class Configuration {
+    public static httpPort = 5000;
     public static baseLocalFolder = './assets/';
     public static mongoUri = 'mongodb://mongo:27017/wordstats';
     public static mongooseDebugMode = false;

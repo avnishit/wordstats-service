@@ -1,6 +1,6 @@
   
 #!/bin/sh
-
+# Set up mongo replica set & choose master
 # exit when any command fails
 set -e
 

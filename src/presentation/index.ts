@@ -1,11 +1,12 @@
 import * as bodyParser from 'body-parser';
 import { wordCounterRoute, wordStatsRoute } from './routes';
 import restServer from './server';
+import configuration from '../configuration';
 
 class presentationLayer {
-    public static async start() {
+    public static async start() : Promise<restServer> {
         const app = new restServer({
-            port: 5000,
+            port: configuration.httpPort,
             routes: [
                 new wordCounterRoute(),
                 new wordStatsRoute()
@@ -16,6 +17,7 @@ class presentationLayer {
             ]
         })
         app.start();
+        return app;
     }
 }
 

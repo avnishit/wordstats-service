@@ -14,7 +14,7 @@ class wordCounterRoute {
     public router = express.Router();
 
     constructor() {
-        this.router.get(this.path, this.index);
+        this.router.post(this.path, this.index);
     }
 
     index = async (req: request, res: response) => {

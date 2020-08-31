@@ -7,6 +7,9 @@
 #### `docker-compose up --build`
 Starts the application in development using `nodemon` and `ts-node` to do hot reloading.
 
+#### `docker-compose exec wordstats-service  bash -c "npm run test:integration`
+Runs basic integration tests on localhost
+
 ### Endpoints
 
 #### `POST /counter/<text/serverpath/remoteurl> { input: string }`
