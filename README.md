@@ -23,6 +23,7 @@ Returns count for number of occurances of word
 
 ### Assumptions / Limitations
 - With default config, a single task (text, file, url) processing is not atomic. Refer to config file for more details.
+- Tokenization is done using default behaviour of https://vocajs.com/#words
 - Tasks & TaskQueue are currently not persistant, only the word stats result are. Tasks are simply queued up & processed, there is no retry mechanism in place right now.
 - File content (text or binary) validation existis only for url & text input. All server files are being treated & processing is attempted as text. For eg. a large video file (loacl server path) will be processed as text after attempted string conversions.
 - Files are being streamed, words that get split across stream chunks are not handled.

@@ -64,6 +64,34 @@ describe('Wordstat Service Tests', () => {
         });
     });
 
+    it('Returns consistent stats across various tasks - remote url', async () => {
+
+        let oldCount = 0;
+
+        request(serverAddr).get('/statistics?input=browser')
+        .end(function(err, res) { 
+            expect((res as any).statusCode).to.equal(200); 
+            if (res?.body?.count) oldCount = res.body.count;
+        });
+
+        const payload = {
+            input: 'http://www.yutz-equitation.com'
+        }
+
+        request(serverAddr).post('/counter/remoteurl').send(payload)
+        .end(function(err, res) { 
+            expect((res as any).statusCode).to.equal(200);
+        });
+
+        await utils.delay(20000);
+
+        request(serverAddr).get('/statistics?input=browser')
+        .end(function(err, res) { 
+            expect((res as any).statusCode).to.equal(200); 
+            expect((res as any).body.count).to.equal(oldCount + 3);
+        });
+    });
+
     it('Returns BadInput for NonExistant File & Url', async () => {
 
         const payload = {

@@ -15,17 +15,9 @@ services:
       - ./assets:/usr/src/app/assets
     links:
       - mongo
-      - redis
     depends_on:
       - mongo
-      - redis
     restart: always
-  redis:
-    image: redis:5.0.7
-    ports:
-      - "6379:6379"
-    logging:
-      driver: none
   mongo:
     image: mongo:4.4.0
     command: mongod --bind_ip_all --replSet rs0
