@@ -13,6 +13,8 @@ Runs basic integration tests on localhost
 
 ### Endpoints
 
+[Sample `Postman Collection`](https://www.postman.com/collections/4b4bb4262d79d1507a82)
+
 #### `POST /counter/<text/serverpath/remoteurl> { input: string }`
 Validates & queues the input for future processing.
 
