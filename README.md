@@ -1,6 +1,7 @@
 # wordStats Service
 
 > Reads a textinput / local file on server / remote file & stores the word count.
+> Note: Service only returns HTTP Status codes (200 - success, 400 - bad Input, 500- Server Error) for Fail API responses with empty body. Body has data only in success scenarios.
 
 ### Scripts
 
@@ -18,6 +19,12 @@ Validates & queues the input for future processing.
 #### `GET /statistics?input=<word>`
 Returns count for number of occurances of word
 
+### Assumptions / Limitations
+- With default config, a single task (text, file, url) processing is not atomic. Refer to config file for more details.
+- Tasks & TaskQueue are currently not persistant, only the word stats result are. Tasks are simply queued up & processed, there is no retry mechanism in place right now.
+- All files are being treated & processing is attempted as text. For eg. a large video file will be processed as text after attempted string conversions.
+- Files are being streamed, words that get split across stream chunks are not handled.
+
 ### Logical Application Layers
 
 #### [Presentation `src/presentation`](./src/presentation)
@@ -33,8 +40,3 @@ The core layer contains the generic models, interfaces & utils for the app, pres
 
 #### [Infrastructure `src/infra`](./src/infra)
 Infrastructure components interface with external services and frameworks such as databases, filesystems and other third party services.
-
-### Assumptions / Limitations
-- With default config, a single task (text, file, url) processing is not atomic. Refer to config file for more details.
-- Tasks & TaskQueue are currently not persistant, only the word stats result are. Tasks are simply queued up & processed, there is no retry mechanism in place right now.
-- All files are being treated & processing is attempted as text.
