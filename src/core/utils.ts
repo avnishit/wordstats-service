@@ -28,8 +28,9 @@ export default class utils {
 
   public static async isReadableRemoteFile(url: string): Promise<boolean> {
     try {
-      await axios.head(url);
-      return true;
+      const result = await axios.head(url);
+      const contentType: string = result?.headers?.['content-type'];
+      return contentType.includes('text');
     } catch (error) {
       return false;
     }

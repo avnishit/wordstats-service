@@ -80,7 +80,19 @@ describe('Wordstat Service Tests', () => {
         }
 
 
-        request(serverAddr).post('/counter/remoteurl').send(payload)
+        request(serverAddr).post('/counter/remoteurl').send(payloadurl)
+        .end(function(err, res) { 
+            expect((res as any).statusCode).to.equal(400);
+        });
+    });
+
+    it('Returns BadInput for Not Text Remote URL', async () => {
+
+        const payloadurl = {
+            input: 'https://imageskincare.nl/media/wysiwyg/Janna-Ronert-CEO-IMAGE-Skincare.1822019.jpg'
+        }
+
+        request(serverAddr).post('/counter/remoteurl').send(payloadurl)
         .end(function(err, res) { 
             expect((res as any).statusCode).to.equal(400);
         });
