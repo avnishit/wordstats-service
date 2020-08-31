@@ -1,4 +1,4 @@
-# WordStats Service
+## WordStats Service
 
 > Reads a textinput / local file on server / remote file & stores the word count.
 > Note: Service only returns HTTP Status codes (200 - success, 400 - bad Input, 500- Server Error) for Fail API responses with empty body. Body has data only in success scenarios.
@@ -24,6 +24,7 @@ Returns count for number of occurances of word
 - Tasks & TaskQueue are currently not persistant, only the word stats result are. Tasks are simply queued up & processed, there is no retry mechanism in place right now.
 - All files are being treated & processing is attempted as text. For eg. a large video file will be processed as text after attempted string conversions.
 - Files are being streamed, words that get split across stream chunks are not handled.
+- For server file path, use default folder path from config to store files ( its set to 'assets'), right now there is no access security in place.
 
 ### Logical Application Layers
 
