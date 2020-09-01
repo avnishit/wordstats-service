@@ -1,4 +1,4 @@
-## WordStats Service
+## Word Statistics Service
 
 > Reads a textinput / local file on server / remote file & stores the word count.
 > Note: Service only returns HTTP Status codes (400 - bad Input, 500- Server Error) for failed API responses with empty body; HTTP Status code, 200 - success, with response body is returned otherwise.
