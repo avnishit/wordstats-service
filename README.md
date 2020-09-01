@@ -1,7 +1,7 @@
 ## WordStats Service
 
 > Reads a textinput / local file on server / remote file & stores the word count.
-> Note: Service only returns HTTP Status codes (200 - success, 400 - bad Input, 500- Server Error) for Fail API responses with empty body. Body has data only in success scenarios.
+> Note: Service only returns HTTP Status codes (400 - bad Input, 500- Server Error) for failed API responses with empty body; HTTP Status code, 200 - success, with response body is returned otherwise.
 
 ### Scripts
 
@@ -13,7 +13,7 @@ Runs basic integration tests on localhost
 
 ### Endpoints
 
-[Sample `Postman Collection`](https://www.postman.com/collections/4b4bb4262d79d1507a82)
+[Test Postman Collection](https://www.postman.com/collections/4b4bb4262d79d1507a82)
 
 #### `POST /counter/<text/serverpath/remoteurl> { input: string }`
 Validates & queues the input for future processing.
