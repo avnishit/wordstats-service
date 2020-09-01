@@ -31,16 +31,16 @@ Returns count for number of occurances of word
 
 ### Logical Application Layers
 
-#### [Presentation `src/presentation`](./src/presentation)
+#### [Presentation](./src/presentation)
 The presentation layer contains the entry points of the application, such as HTTP servers.
 
-#### [Application `src/app`](./src/app)
+#### [Application](./src/app)
 The application layer contains the business rules that make up the overall function of the service. Applications mediate between the
 presentation and infrastructure components, and provide an isolated layer in which business logic can exist,
 de-coupled from any presentation or infrastructure concrete implementation.
 
-#### [Core `src/core`](./src/core)
+#### [Core](./src/core)
 The core layer contains the generic models, interfaces & utils for the app, presentation and infrastructure components.
 
-#### [Infrastructure `src/infra`](./src/infra)
+#### [Infrastructure](./src/infra)
 Infrastructure components interface with external services and frameworks such as databases, filesystems and other third party services.

@@ -18,7 +18,5 @@ RUN chmod +x ./waitForReplicaSet
 
 RUN npm install
 COPY . .
-EXPOSE 500
+EXPOSE 5000
 CMD ./waitForReplicaSet && npm run start:dev
-
-#CMD [ "npm", "run", "start:dev" ]
