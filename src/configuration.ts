@@ -10,7 +10,7 @@ export default class Configuration {
 
     /*
     Set useTransaction to true to make sure documents are either fully processed or not, however in case of extremely large txt files
-    (say 100Mb), this forces us to make a choice between long running muti doc transactions (which can be disastirius) and memory use.
+    (say 100MB), this forces us to make a choice between long running muti doc transactions (which can be disasterous) and memory use.
     In this implemenntation I have prefered extra memory use for supporting transactions.
     */
 
